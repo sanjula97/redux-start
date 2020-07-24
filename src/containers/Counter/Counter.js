@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import CounterControl from "../../components/CounterControl/CounterControl";
 import CounterOutput from "../../components/CounterOutput/CounterOutput";
 import { connect } from "react-redux";
+import * as actionTypes from "../../store/actions";
 
 class Counter extends Component {
   state = {
@@ -49,7 +50,9 @@ class Counter extends Component {
         <CounterControl label="Add 5" clicked={this.props.onAddFive} />
         <CounterControl label="Subtract 5" clicked={this.props.onSubFive} />
         <hr />
-        <button onClick={this.props.onStoreResult}>Store Result</button>
+        <button onClick={() => this.props.onStoreResult(this.props.ctr)}>
+          Store Result
+        </button>
         <ul>
           {this.props.storedResults.map((strResult) => (
             <li
@@ -67,19 +70,21 @@ class Counter extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ctr: state.counter,
-    storedResults: state.results,
+    ctr: state.ctr.counter,
+    storedResults: state.res.results,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onIncrementCounter: () => dispatch({ type: "INCREMENT" }),
-    onDecrementCounter: () => dispatch({ type: "DECREMENT" }),
-    onAddFive: () => dispatch({ type: "ADD_5", value: 5 }),
-    onSubFive: () => dispatch({ type: "SUB_5", value: 5 }),
-    onStoreResult: () => dispatch({ type: "STORE_RESULT" }),
-    onDeleteResult: (id) => dispatch({ type: "DELETE_RESULT", resultElId: id }),
+    onIncrementCounter: () => dispatch({ type: actionTypes.INCREMENT }),
+    onDecrementCounter: () => dispatch({ type: actionTypes.DECREMENT }),
+    onAddFive: () => dispatch({ type: actionTypes.ADD_5, value: 5 }),
+    onSubFive: () => dispatch({ type: actionTypes.SUB_5, value: 5 }),
+    onStoreResult: (result) =>
+      dispatch({ type: actionTypes.STORE_RESULT, result: result }),
+    onDeleteResult: (id) =>
+      dispatch({ type: actionTypes.DELETE_RESULT, resultElId: id }),
   };
 };
 
