@@ -1,4 +1,4 @@
-import * as actionTypes from "../actions";
+import * as actionTypes from "../actions/actions";
 
 const initialState = {
   results: [],
@@ -15,7 +15,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         results: state.results.filter(
-          (result) => result.id !== action.resultElId
+          (result) => result.id !== action.resultelId
         ),
       };
     default:
