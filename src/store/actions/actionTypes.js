@@ -5,32 +5,6 @@ export const SUB_5 = "SUB_5";
 export const STORE_RESULT = "STORE_RESULT";
 export const DELETE_RESULT = "DELETE_RESULT";
 
-export const increment = () => {
-  return {
-    type: INCREMENT,
-  };
-};
-
-export const decrement = () => {
-  return {
-    type: DECREMENT,
-  };
-};
-
-export const add_5 = () => {
-  return {
-    type: ADD_5,
-    value: 5,
-  };
-};
-
-export const sub_5 = () => {
-  return {
-    type: SUB_5,
-    value: 5,
-  };
-};
-
 export const saveResult = (result) => {
   return {
     type: STORE_RESULT,
